@@ -1,0 +1,2 @@
+
+#define BYTE_MAX_VALUE 255
