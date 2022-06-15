@@ -65,7 +65,7 @@ void MemMap::write(int addr, int dataIn){
 
         //Test write and read
         for(int addr=0; addr<size; addr++) {
-            golden = addr % BYTE_MAX_VALUE;
+            golden = addr % MAX_VALUE_BYTE(1);
             memMap.write(addr, golden);
             assert( (golden == memMap.read(addr)) );
         }

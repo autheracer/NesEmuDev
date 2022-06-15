@@ -18,7 +18,7 @@ int MemByte::read(){
 //write
 void MemByte::write(int dataIn){
     try{
-        if(dataIn > BYTE_MAX_VALUE)
+        if(dataIn > MAX_VALUE_BYTE(1))
             throw dataIn;
     }
     catch(int dataIn){
@@ -40,7 +40,7 @@ void MemByte::write(int dataIn){
         int golden;
 
         //Test write and read
-        for(int golden=0; golden<BYTE_MAX_VALUE; golden++) {
+        for(int golden=0; golden<MAX_VALUE_BYTE(1); golden++) {
             memByte.write(golden);
             assert( (golden == memByte.read()) );
         }
