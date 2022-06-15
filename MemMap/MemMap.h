@@ -1,4 +1,7 @@
 
+#ifndef MEMMAP_H
+#define MEMMAP_H
+
 #include "../MemByte/MemByte.h"
 
 //header for MemMap class
@@ -15,3 +18,5 @@ class MemMap{
         int      size;
         MemByte  *mem;
 }; 
+
+#endif

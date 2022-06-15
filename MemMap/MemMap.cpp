@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include "MemMap.h"
+#include "NesEmuDevConst.h"
 
 using namespace std;
 
@@ -45,3 +46,33 @@ void MemMap::write(int addr, int dataIn){
     
     mem[addr].write(dataIn);
 }
+
+
+#ifdef TEST_FUNC
+
+    #include "assert.h"
+
+    //test function
+    int main(){
+
+        MemMap memMap;
+        int golden;
+        int size  ;
+
+        size = 1024;
+
+        memMap.init(size);
+
+        //Test write and read
+        for(int addr=0; addr<size; addr++) {
+            golden = addr % BYTE_MAX_VALUE;
+            memMap.write(addr, golden);
+            assert( (golden == memMap.read(addr)) );
+        }
+
+        cout << "Pass MemMapTest !" << "\n";
+
+        return 0;
+    }
+
+#endif
