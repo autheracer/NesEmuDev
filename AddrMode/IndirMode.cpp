@@ -45,5 +45,5 @@ int IndirMode::getOperand(){
 void IndirMode::setNextPC(){
     Reg& PC = cpuReg.getPC();
     //update PC+=3
-    PC.write( PC.read()+3 );
+    PC.write( operand );
 }
