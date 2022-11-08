@@ -14,7 +14,7 @@ Reg::Reg(int size):
 //write
 void Reg::write(int dataIn){
     try{
-        if(dataIn > (1<<(size*BITS_PER_BYTE)-1))
+        if(dataIn > MAX_VALUE_BYTE(size))
             throw dataIn;
     }
     catch(int dataIn){

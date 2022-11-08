@@ -22,7 +22,6 @@ class AddrMode{
         MemMap&    mem   ;
  
         int        operand  ;
-        int        condition;
 };
 
 #endif
