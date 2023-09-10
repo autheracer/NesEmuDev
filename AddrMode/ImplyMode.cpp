@@ -4,12 +4,8 @@
 using namespace std;
 
 //Constructor
-ImplyMode::ImplyMode(CpuReg& cpuReg, MemMap& mem):
-    cpuReg(cpuReg),
-    mem   (mem   ){
-}
-
-~ImplyMode::ImplyMode(){
+ImplyMode::ImplyMode(CpuReg* cpuReg, MemMap* mem):
+    AddrMode(cpuReg, mem){
 }
 
 //getOperand
@@ -20,5 +16,5 @@ int ImplyMode::getOperand(){
 //setNextPC
 void ImplyMode::setNextPC(){
     //update PC+=1
-    cpuReg.writePC( cpuReg.readPC()+1 );
+    cpuReg->writePC( cpuReg->readPC()+1 );
 }

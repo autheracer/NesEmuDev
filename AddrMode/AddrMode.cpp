@@ -4,11 +4,17 @@
 using namespace std;
 
 //Constructor
-AddrMode::AddrMode(CpuReg& cpuReg, MemMap& mem):
+AddrMode::AddrMode(){
+}
+AddrMode::AddrMode(CpuReg* cpuReg, MemMap* mem):
     cpuReg(cpuReg),
     mem   (mem   ){
 }
 
-~AddrMode::AddrMode(){
+int AddrMode::getOperand(){
+    return 0;
 }
 
+void AddrMode::setNextPC(){
+    return;
+}

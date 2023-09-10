@@ -4,12 +4,8 @@
 using namespace std;
 
 //Constructor
-AccMode::AccMode(CpuReg& cpuReg, MemMap& mem):
-    cpuReg(cpuReg),
-    mem   (mem   ){
-}
-
-~AccMode::AccMode(){
+AccMode::AccMode(CpuReg* cpuReg, MemMap* mem):
+    AddrMode(cpuReg, mem){
 }
 
 //getOperand
@@ -20,5 +16,5 @@ int AccMode::getOperand(){
 //setNextPC
 void AccMode::setNextPC(){
     //update PC+=1
-    cpuReg.writePC( cpuReg.readPC()+1 );
+    cpuReg->writePC( cpuReg->readPC()+1 );
 }

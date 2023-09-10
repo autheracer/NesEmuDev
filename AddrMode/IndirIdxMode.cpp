@@ -5,12 +5,8 @@
 using namespace std;
 
 //Constructor
-IndirIdxMode::IndirIdxMode(CpuReg& cpuReg, MemMap& mem):
-    cpuReg(cpuReg),
-    mem   (mem   ){
-}
-
-~IndirIdxMode::IndirIdxMode(){
+IndirIdxMode::IndirIdxMode(CpuReg* cpuReg, MemMap* mem):
+    AddrMode(cpuReg, mem){
 }
 
 //getOperand
@@ -21,15 +17,15 @@ int IndirIdxMode::getOperand(){
     int addr     ;
     int operand  ;
 
-    indirAddr = mem.read( cpuReg.readPC()+1 );
+    indirAddr = mem->read( cpuReg->readPC()+1 );
     //read mem[indirAddr  ] for addrLSB 
-    addrLSB = mem.read( indirAddr   );
+    addrLSB = mem->read( indirAddr   );
     //read mem[indirAddr+1] for addrMSB
-    addrMSB = mem.read( indirAddr+1 );
+    addrMSB = mem->read( indirAddr+1 );
     //shift addrMSB and add with addrLSB
-    addr    = (addrMSB<<BITS_PER_BYTE) + addrLSB + cpuReg.readY();
+    addr    = (addrMSB<<BITS_PER_BYTE) + addrLSB + cpuReg->readY();
     //read mem[addr] for operand
-    operand = mem.read( addr );
+    operand = mem->read( addr );
 
     return  operand;
 }
@@ -37,5 +33,5 @@ int IndirIdxMode::getOperand(){
 //setNextPC
 void IndirIdxMode::setNextPC(){
     //update PC+=2
-    cpuReg.writePC( cpuReg.readPC()+2 );
+    cpuReg->writePC( cpuReg->readPC()+2 );
 }

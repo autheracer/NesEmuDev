@@ -8,18 +8,18 @@
 
 class AddrMode{
     public:
-        AddrMode(CpuReg& cpuReg, MemMap& mem);
-        ~AddrMode();
+        AddrMode();
+        AddrMode(CpuReg* cpuReg, MemMap* mem);
 
         //cal addr and return the operand based on addr mode
-        virtual  int getOperand()=0;
+        virtual  int getOperand();
 
         //set next PC
-        virtual void setNextPC()=0;
+        virtual void setNextPC();
 
     protected:
-        CpuReg&    cpuReg;
-        MemMap&    mem   ;
+        CpuReg*    cpuReg;
+        MemMap*    mem   ;
 };
 
 #endif

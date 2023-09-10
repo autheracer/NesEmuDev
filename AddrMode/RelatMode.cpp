@@ -4,19 +4,15 @@
 using namespace std;
 
 //Constructor
-RelatMode::RelatMode(CpuReg& cpuReg, MemMap& mem):
-    cpuReg(cpuReg),
-    mem   (mem   ){
-}
-
-~RelatMode::RelatMode(){
+RelatMode::RelatMode(CpuReg* cpuReg, MemMap* mem):
+    AddrMode(cpuReg, mem){
 }
 
 //getOperand
 int RelatMode::getOperand(){
     int operand  ;
     //read mem[PC+1] for operand 
-    operand = mem.read( cpuReg.readPC()+1 );
+    operand = mem->read( cpuReg->readPC()+1 );
 
     return  operand;
 }
@@ -24,5 +20,5 @@ int RelatMode::getOperand(){
 //setNextPC
 void RelatMode::setNextPC(){
     //update PC+=2
-    cpuReg.writePC( cpuReg.readPC()+2 );
+    cpuReg->writePC( cpuReg->readPC()+2 );
 }
