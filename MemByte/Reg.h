@@ -8,7 +8,7 @@
 class Reg: public MemByte{
     public:
         Reg(int size=1);
-        virtual void write(int dataIn); //set data for this MemByte
+        virtual void write(int value); //set data for this MemByte
     private:
         int size; //data size(# of byte) of this register
 };

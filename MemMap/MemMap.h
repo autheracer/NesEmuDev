@@ -12,7 +12,7 @@ class MemMap{
 
         virtual void  init(int size=1);
                 int   read(int addr=0);
-                void  write(int addr=0, int dataIn=0);
+                void  write(int addr=0, int value=0);
 
     private:
         int      size;

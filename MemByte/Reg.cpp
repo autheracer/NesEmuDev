@@ -12,14 +12,14 @@ Reg::Reg(int size):
 }
 
 //write
-void Reg::write(int dataIn){
+void Reg::write(int value){
     try{
-        if(dataIn > MAX_VALUE_BYTE(size))
-            throw dataIn;
+        if(value > MAX_VALUE_BYTE(size))
+            throw value;
     }
-    catch(int dataIn){
-        cout << "Set Value=" << dataIn << " to a " << size << "-byte Register." << "\n";
+    catch(int value){
+        cout << "Set Value=" << value << " to a " << size << "-byte Register." << "\n";
     }
 
-    this->data = dataIn;
+    this->data = value;
 }

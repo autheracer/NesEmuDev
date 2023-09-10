@@ -6,7 +6,7 @@ class MemByte{
     public:
         MemByte();
         int  read();           //return data for this MemByte
-        virtual void write(int dataIn); //set data for this MemByte
+        virtual void write(int value); //set data for this MemByte
 
     protected:
         int data;           //data for this MemByte

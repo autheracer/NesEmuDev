@@ -35,7 +35,7 @@ int MemMap::read(int addr){
 }
 
 //write
-void MemMap::write(int addr, int dataIn){
+void MemMap::write(int addr, int value){
     try{
         if(addr > this->size)
             throw addr;
@@ -44,7 +44,7 @@ void MemMap::write(int addr, int dataIn){
         cout << "Write to illegal Addr=" << hex << addr << "\n";
     }
     
-    mem[addr].write(dataIn);
+    mem[addr].write(value);
 }
 
 

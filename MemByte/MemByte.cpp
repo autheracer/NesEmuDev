@@ -16,16 +16,16 @@ int MemByte::read(){
 }
 
 //write
-void MemByte::write(int dataIn){
+void MemByte::write(int value){
     try{
-        if(dataIn > MAX_VALUE_BYTE(1))
-            throw dataIn;
+        if(value > MAX_VALUE_BYTE(1))
+            throw value;
     }
-    catch(int dataIn){
-        cout << "Set Value=" << dataIn << " to a Byte." << "\n";
+    catch(int value){
+        cout << "Set Value=" << value << " to a Byte." << "\n";
     }
 
-    this->data = dataIn;
+    this->data = value;
 }
 
 
