@@ -14,17 +14,15 @@ RelatMode::RelatMode(CpuReg& cpuReg, MemMap& mem):
 
 //getOperand
 int RelatMode::getOperand(){
-    Reg& PC = cpuReg.getPC();
-
+    int operand  ;
     //read mem[PC+1] for operand 
-    operand = mem.read( PC.read()+1 );
+    operand = mem.read( cpuReg.readPC()+1 );
 
     return  operand;
 }
 
 //setNextPC
 void RelatMode::setNextPC(){
-    Reg& PC = cpuReg.getPC();
     //update PC+=2
-    PC.write( PC.read()+2 );
+    cpuReg.writePC( cpuReg.readPC()+2 );
 }

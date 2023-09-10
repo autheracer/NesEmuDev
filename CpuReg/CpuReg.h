@@ -8,12 +8,13 @@
 class CpuReg{
     public:
         CpuReg();
-        Reg & getPC();
-        Reg & getSP();
-        Reg & getA ();
-        Reg & getX ();
-        Reg & getY ();
-        Reg & getP ();
+
+        void writePC(int value);
+        void writeSP(int value);
+        void writeA (int value);
+        void writeX (int value);
+        void writeY (int value);
+        void writeP (int value);
 
         void writeC(int bitValue);
         void writeZ(int bitValue);
@@ -22,6 +23,13 @@ class CpuReg{
         void writeB(int bitValue);
         void writeV(int bitValue);
         void writeN(int bitValue);
+
+         int readPC();
+         int readSP();
+         int readA ();
+         int readX ();
+         int readY ();
+         int readP ();
 
          int readC();
          int readZ();

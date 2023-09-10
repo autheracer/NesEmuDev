@@ -20,8 +20,6 @@ class AddrMode{
     protected:
         CpuReg&    cpuReg;
         MemMap&    mem   ;
- 
-        int        operand  ;
 };
 
 #endif

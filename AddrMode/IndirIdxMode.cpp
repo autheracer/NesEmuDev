@@ -19,16 +19,15 @@ int IndirIdxMode::getOperand(){
     int addrLSB  ;
     int addrMSB  ;
     int addr     ;
-    Reg& PC = cpuReg.getPC();
-    Reg&  Y = cpuReg.getY();
+    int operand  ;
 
-    indirAddr = mem.read( PC.read()+1 );
+    indirAddr = mem.read( cpuReg.readPC()+1 );
     //read mem[indirAddr  ] for addrLSB 
     addrLSB = mem.read( indirAddr   );
     //read mem[indirAddr+1] for addrMSB
     addrMSB = mem.read( indirAddr+1 );
     //shift addrMSB and add with addrLSB
-    addr    = addrMSB<<BITS_PER_BYTE + addrLSB + Y.read();
+    addr    = (addrMSB<<BITS_PER_BYTE) + addrLSB + cpuReg.readY();
     //read mem[addr] for operand
     operand = mem.read( addr );
 
@@ -37,7 +36,6 @@ int IndirIdxMode::getOperand(){
 
 //setNextPC
 void IndirIdxMode::setNextPC(){
-    Reg& PC = cpuReg.getPC();
     //update PC+=2
-    PC.write( PC.read()+2 );
+    cpuReg.writePC( cpuReg.readPC()+2 );
 }

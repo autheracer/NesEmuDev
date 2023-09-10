@@ -15,10 +15,10 @@ ZPMode::ZPMode(CpuReg& cpuReg, MemMap& mem):
 //getOperand
 int ZPMode::getOperand(){
     int addr   ;
-    Reg& PC = cpuReg.getPC();
+    int operand  ;
 
     //read mem[PC+1] for the address of operand
-    addr    = mem.read( PC.read()+1 );
+    addr    = mem.read( cpuReg.readPC()+1 );
     //read mem[addr] for operand
     operand = mem.read( addr );
 
@@ -27,7 +27,6 @@ int ZPMode::getOperand(){
 
 //setNextPC
 void ZPMode::setNextPC(){
-    Reg& PC = cpuReg.getPC();
     //update PC+=2
-    PC.write( PC.read()+2 );
+    cpuReg.writePC( cpuReg.readPC()+2 );
 }

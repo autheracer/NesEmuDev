@@ -1,15 +1,15 @@
 
-#ifndef IDXZPMODE_H
-#define IDXZPMODE_H
+#ifndef IDXZPMODEY_H
+#define IDXZPMODEY_H
 
 //header for AddrMode class
 #include "../MemMap/MemMap.h"
 #include "../CpuReg/CpuReg.h"
 
-class IdxZPMode: public AddrMode{
+class IdxZPModeY: public AddrMode{
     public:
-        IdxZPMode(CpuReg& cpuReg, MemMap& mem);
-        ~IdxZPMode();
+        IdxZPModeY(CpuReg& cpuReg, MemMap& mem);
+        ~IdxZPModeY();
 
         //cal addr and return the operand based on addr mode
         virtual  int getOperand();

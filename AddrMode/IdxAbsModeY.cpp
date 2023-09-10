@@ -1,20 +1,20 @@
 #include <iostream>
-#include "AbsMode.h"
+#include "IdxAbsModeY.h"
 #include "NesEmuDevConst.h"
 
 using namespace std;
 
 //Constructor
-AbsMode::AbsMode(CpuReg& cpuReg, MemMap& mem):
+IdxAbsModeY::IdxAbsModeY(CpuReg& cpuReg, MemMap& mem):
     cpuReg(cpuReg),
     mem   (mem   ){
 }
 
-~AbsMode::AbsMode(){
+~IdxAbsModeY::IdxAbsModeY(){
 }
 
 //getOperand
-int AbsMode::getOperand(){
+int IdxAbsModeY::getOperand(){
     int addrLSB  ;
     int addrMSB  ;
     int addr     ;
@@ -24,8 +24,8 @@ int AbsMode::getOperand(){
     addrLSB = mem.read( cpuReg.readPC()+1 );
     //read mem[PC+2] for addr's MSB part
     addrMSB = mem.read( cpuReg.readPC()+2 );
-    //shift addrMSB and add with addrLSB
-    addr    = (addrMSB<<BITS_PER_BYTE) + addrLSB;
+    //shift addrMSB and add with addrLSB, X
+    addr    = (addrMSB<<BITS_PER_BYTE) + addrLSB + cpuReg.readY();
     //read mem[addr] for operand
     operand = mem.read( addr );
 
@@ -33,7 +33,7 @@ int AbsMode::getOperand(){
 }
 
 //setNextPC
-void AbsMode::setNextPC(){
+void IdxAbsModeY::setNextPC(){
     //update PC+=3
     cpuReg.writePC( cpuReg.readPC()+3 );
 }

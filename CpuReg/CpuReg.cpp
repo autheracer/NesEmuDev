@@ -15,26 +15,6 @@ CpuReg::CpuReg():
     P (1){
 }
 
-//return register pointers
-Reg& CpuReg::getPC(){
-    return PC;
-}
-Reg& CpuReg::getSP(){
-    return SP;
-}
-Reg& CpuReg::getA(){
-    return A;
-}
-Reg& CpuReg::getX(){
-    return X;
-}
-Reg& CpuReg::getY(){
-    return Y;
-}
-Reg& CpuReg::getP(){
-    return P;
-}
-
 void CpuReg::writePbit(int bitValue, int bitPosition){
     int originalValue;
     int bitValueMask;
@@ -54,6 +34,30 @@ int CpuReg::readPbit(int bitPosition){
     readValue = P.read();
     bitValue = (readValue & bitValueMask) >> bitPosition;
     return bitValue;
+}
+
+void CpuReg::writePC(int value){
+    PC.write(value);
+}
+
+void CpuReg::writeSP(int value){
+    SP.write(value);
+}
+
+void CpuReg::writeA(int value){
+    A.write(value);
+}
+
+void CpuReg::writeX(int value){
+    X.write(value);
+}
+
+void CpuReg::writeY(int value){
+    Y.write(value);
+}
+
+void CpuReg::writeP(int value){
+    P.write(value);
 }
 
 void CpuReg::writeC(int bitValue){
@@ -82,6 +86,30 @@ void CpuReg::writeV(int bitValue){
 
 void CpuReg::writeN(int bitValue){
     writePbit(bitValue, 7);
+}
+
+int CpuReg::readPC(){
+    return PC.read();
+}
+
+int CpuReg::readSP(){
+    return SP.read();
+}
+
+int CpuReg::readA(){
+    return A.read();
+}
+
+int CpuReg::readX(){
+    return X.read();
+}
+
+int CpuReg::readY(){
+    return Y.read();
+}
+
+int CpuReg::readP(){
+    return P.read();
 }
 
 int CpuReg::readC(){
@@ -121,26 +149,19 @@ int CpuReg::readN(){
 
         CpuReg cpuReg;
 
-        Reg&  PC = cpuReg.getPC();;
-        Reg&  SP = cpuReg.getSP();;
-        Reg&  A  = cpuReg.getA ();;
-        Reg&  X  = cpuReg.getX ();;
-        Reg&  Y  = cpuReg.getY ();;
-        Reg&  P  = cpuReg.getP ();;
-        
-        PC.write(MAX_VALUE_BYTE(2));
-        SP.write(MAX_VALUE_BYTE(1));
-        A.write (MAX_VALUE_BYTE(1));
-        X.write (MAX_VALUE_BYTE(1));
-        Y.write (MAX_VALUE_BYTE(1));
-        P.write (MAX_VALUE_BYTE(1));
+        cpuReg.writePC(MAX_VALUE_BYTE(2));
+        cpuReg.writeSP(MAX_VALUE_BYTE(1));
+        cpuReg.writeA (MAX_VALUE_BYTE(1));
+        cpuReg.writeX (MAX_VALUE_BYTE(1));
+        cpuReg.writeY (MAX_VALUE_BYTE(1));
+        cpuReg.writeP (MAX_VALUE_BYTE(1));
 
-        assert( (MAX_VALUE_BYTE(2) == PC.read()) );
-        assert( (MAX_VALUE_BYTE(1) == SP.read()) );
-        assert( (MAX_VALUE_BYTE(1) == A.read ()) );
-        assert( (MAX_VALUE_BYTE(1) == X.read ()) );
-        assert( (MAX_VALUE_BYTE(1) == Y.read ()) );
-        assert( (MAX_VALUE_BYTE(1) == P.read ()) );
+        assert( (MAX_VALUE_BYTE(2) == cpuReg.readPC()) );
+        assert( (MAX_VALUE_BYTE(1) == cpuReg.readSP()) );
+        assert( (MAX_VALUE_BYTE(1) == cpuReg.readA ()) );
+        assert( (MAX_VALUE_BYTE(1) == cpuReg.readX ()) );
+        assert( (MAX_VALUE_BYTE(1) == cpuReg.readY ()) );
+        assert( (MAX_VALUE_BYTE(1) == cpuReg.readP ()) );
 
         // P = 0xff
         cpuReg.writeC(0); // P = 0xfe
@@ -151,7 +172,7 @@ int CpuReg::readN(){
         cpuReg.writeV(1); // P = 0xea
         cpuReg.writeN(0); // P = 0x6a
 
-        assert( (0x6a == P.read ()) );
+        assert( (0x6a == cpuReg.readP()) );
         assert( (0 == cpuReg.readC()) );
         assert( (1 == cpuReg.readZ()) );
         assert( (0 == cpuReg.readI()) );

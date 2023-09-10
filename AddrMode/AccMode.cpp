@@ -19,7 +19,6 @@ int AccMode::getOperand(){
 
 //setNextPC
 void AccMode::setNextPC(){
-    Reg& PC = cpuReg.getPC();
     //update PC+=1
-    PC.write( PC.read()+1 );
+    cpuReg.writePC( cpuReg.readPC()+1 );
 }
