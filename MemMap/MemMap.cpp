@@ -24,7 +24,7 @@ void MemMap::init(int size){
 //read
 int MemMap::read(int addr){
     try{
-        if(addr > this->size)
+        if(addr >= this->size)
             throw addr;
     }
     catch(int addr){
@@ -37,7 +37,7 @@ int MemMap::read(int addr){
 //write
 void MemMap::write(int addr, int value){
     try{
-        if(addr > this->size)
+        if(addr >= this->size)
             throw addr;
     }
     catch(int addr){
@@ -65,7 +65,7 @@ void MemMap::write(int addr, int value){
 
         //Test write and read
         for(int addr=0; addr<size; addr++) {
-            golden = addr % MAX_VALUE_BYTE(1);
+            golden = addr & MAX_VALUE_BYTE(1);
             memMap.write(addr, golden);
             assert( (golden == memMap.read(addr)) );
         }
